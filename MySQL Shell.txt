@@ -1,0 +1,1417 @@
+MySQL Shell 8.0.36
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > show database;
+ERROR: Not connected.
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 14
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show database;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+ MySQL  localhost:3306 ssl  SQL > CREATE DATABASE student;
+Query OK, 1 row affected (0.0175 sec)
+ MySQL  localhost:3306 ssl  SQL > SHOW DATABASE;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATABASE' at line 1
+ MySQL  localhost:3306 ssl  SQL > SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+5 rows in set (0.0047 sec)
+ MySQL  localhost:3306 ssl  SQL > USE student;
+Default schema set to `student`.
+Fetching global names, object names from `student` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  student  SQL > CREATE TABLE student( id int(10) PRIMARY KEY, name varchar(29), email varchar(20));
+Query OK, 0 rows affected, 1 warning (0.0636 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  student  SQL > DESCRIBE student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(29) | YES  |     | NULL    |       |
+| email | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.0149 sec)
+ MySQL  localhost:3306 ssl  student  SQL > INSERT INTO student (id ,name ,email) VALUES
+                                        -> ('1','ami','ami12@mail.com'),
+                                        -> ('2','meet','meet@mail.com'),
+                                        -> ('3','prince','prince23@mail.com'),
+                                        -> ('4','om','om@gmail.com'),
+                                        -> ('5','amii','ami@gmail.com');
+Query OK, 5 rows affected (0.0317 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > SELECT *FROM student;
++----+--------+-------------------+
+| id | name   | email             |
++----+--------+-------------------+
+|  1 | ami    | ami12@mail.com    |
+|  2 | meet   | meet@mail.com     |
+|  3 | prince | prince23@mail.com |
+|  4 | om     | om@gmail.com      |
+|  5 | amii   | ami@gmail.com     |
++----+--------+-------------------+
+
+
+
+
+
+
+MySQL Shell 8.0.36
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 50
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| any                |
+| customer           |
+| inforamation       |
+| information_schema |
+| mysql              |
+| new                |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+9 rows in set (0.0032 sec)
+ MySQL  localhost:3306 ssl  SQL > use student;
+Default schema set to `student`.
+Fetching global names, object names from `student` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+5 rows in set (0.0027 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from salesman_master;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra     | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+4 rows in set (0.0024 sec)
+
+
+
+
+
+
+
+ MySQL  localhost:3306 ssl  student  SQL > select * from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0039 sec)
+1. MySQL  localhost:3306 ssl  student  SQL > select name from client_master;
++----------------+
+| name           |
++----------------+
+| NULL           |
+| NULL           |
+| ami            |
+| mit sangani    |
+| ivan bayrose   |
+| mamta muzandar |
+| chhaya bankar  |
+| ashwini josi   |
+| hansel colaco  |
+| deepak sharma  |
++----------------+
+
+
+
+ERROR: 1054 (42S22): Unknown column 'contacts' in 'field list'
+ 3.MySQL  localhost:3306 ssl  student  SQL > select name,city,state from client_master;
++----------------+-------+-------------+
+| name           | city  | state       |
++----------------+-------+-------------+
+| NULL           | NULL  | NULL        |
+| NULL           | NULL  | NULL        |
+| ami            | rdfrg | gujarat     |
+| mit sangani    | surat | mumbai      |
+| ivan bayrose   | rdfrg | gujarat     |
+| mamta muzandar | rdfrg | tamilnadu   |
+| chhaya bankar  | rdfrg | maharashtra |
+| ashwini josi   | rdfrg | gujarat     |
+| hansel colaco  | rdfrg | gujarat     |
+| deepak sharma  | rdfrg | gujarat     |
++----------------+-------+-------------+
+
+
+
+4.10 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select description from product_master;
++--------------+
+| description  |
++--------------+
+| Tshirt       |
+| shirt        |
+| cotton jeans |
+| jence        |
+| Trosour      |
++--------------+
+
+5. MySQL  localhost:3306 ssl  student  SQL > select *from salesman_master where city = 'mumbai' ;
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| s00003     | raj          | p-7      | bandra   | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+
+
+
+6. MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salamt = 3000 ;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra     | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+
+
+ht syntax to use near '= 100' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where tgttoget = 100 ;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MySQL Shell 8.0.36
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 71
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use student;
+Default schema set to `student`.
+Fetching global names, object names from `student` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master
+                                        -> ;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0052 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from salesman_master;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra     | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+4 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select
+                                        -> *from product_master;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+5 rows in set (0.0029 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select address1,state from salesman_master;
++----------+-------------+
+| address1 | state       |
++----------+-------------+
+| a/13     | maharashtra |
+| 65       | maharashtra |
+| p-7      | maharashtra |
+| a/5      | maharashtra |
++----------+-------------+
+4 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  seleprice != 500;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+4 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  seleprice < 400;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+4 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  seleprice < 600;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+5 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  seleprice > 400;
++-----------+-------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+-------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P0345     | shirt       |              6 | piecs       |       150 |         50 |       500 |       350 |
++-----------+-------------+----------------+-------------+-----------+------------+-----------+-----------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  description like %h%;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%h%' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  description LIKE %h%;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%h%' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  description LIKE %h%%%;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%h%%%' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where  description LIKE __i;
+ERROR: 1054 (42S22): Unknown column '__i' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master where productno between p0342 AND p07865;
+ERROR: 1054 (42S22): Unknown column 'p0342' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from product_master where productno between p0342 AND p07865;
+ERROR: 1054 (42S22): Unknown column 'p0342' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from product_master where productno between P0342 AND P07865;
+ERROR: 1054 (42S22): Unknown column 'P0342' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from product_master where productno between P0345 AND P07865;
+ERROR: 1054 (42S22): Unknown column 'P0345' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from product_master where productno between 'P0345' AND 'P07865';
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+3 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from product_master where productno between 'P0345' and 'P07865';
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+3 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where city in ('surat' , 'mubat');
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city  | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00004     | ashish       | a/5      | juhu     | surat |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+2 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where city in ('surat' , 'mubat');
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city  | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00004     | ashish       | a/5      | juhu     | surat |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+2 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from salesman_master;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra     | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+4 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where city in ('surat' , 'mumbai');
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra   | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu     | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+3 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where city in ('surat','mumbai');
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra   | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu     | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+3 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where city in ('surat','mumbat');
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+3 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmanname like '%m%';
+ERROR: 1054 (42S22): Unknown column 'salesmanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmanname like '%m%%';
+ERROR: 1054 (42S22): Unknown column 'salesmanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemanname like '%m%';
+ERROR: 1054 (42S22): Unknown column 'salsemanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemanname like '%m%';
+ERROR: 1054 (42S22): Unknown column 'salsemanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemanname like '%m%%';
+ERROR: 1054 (42S22): Unknown column 'salsemanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemanname like '__a';
+ERROR: 1054 (42S22): Unknown column 'salsemanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like '__a';
+Empty set (0.0019 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemanname like '%m%%';
+ERROR: 1054 (42S22): Unknown column 'salsemanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like '%m%';
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+2 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmanname like '_m___';
+ERROR: 1054 (42S22): Unknown column 'salesmanname' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like '_m___';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like '_m__';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like 'a_____';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like '';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select *from salesman_master;
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli      | surat  |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
+| s00003     | raj          | p-7      | bandra     | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
+| s00004     | ashish       | a/5      | juhu       | surat  |   56567 | maharashtra |   3000 |      200 |      150 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+4 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like 'a%a';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salesmannane like 'a%an';
+ERROR: 1054 (42S22): Unknown column 'salesmannane' in 'where clause'
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'a%an';
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city  | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0023 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'a%a';
+Empty set (0.0025 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'o%a';
+Empty set (0.0021 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'o%%%ar';
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like '____ar';
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2   | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+| s00002     | omakar       | 65       | narimanrli | mumbat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+------------+--------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0026 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like '___n';
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city  | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0025 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'a___';
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city  | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+| s00001     | aman         | a/13     | worli    | surat |   12345 | maharashtra |   3000 |      100 |       50 | good    |
++------------+--------------+----------+----------+-------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select * from salesman_master where salsemannane like 'r_j';
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| salesnamno | salsemannane | address1 | address2 | city   | pincode | state       | salamt | tgttoget | ytdsales | remarks |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+| s00003     | raj          | p-7      | bandra   | mumbai |   87985 | maharashtra |   3000 |      200 |      100 | good    |
++------------+--------------+----------+----------+--------+---------+-------------+--------+----------+----------+---------+
+1 row in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  student  SQL >
+
+
+
+
+
+
+
+MySQL Shell 8.0.36
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 9
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| any                |
+| customer           |
+| inforamation       |
+| information_schema |
+| mysql              |
+| new                |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+9 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  SQL > use student;
+Default schema set to `student`.
+Fetching global names, object names from `student` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0120 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select count(clientno),address1 from client_master group by address1;
++-----------------+----------+
+| count(clientno) | address1 |
++-----------------+----------+
+|               0 | NULL     |
+|               1 | surat    |
+|               1 | madras   |
+|               4 | mumbai   |
+|               1 | bangalor |
+|               1 | mungalor |
++-----------------+----------+
+6 rows in set (0.0044 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from product_master;
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| productno | description  | profilepercent | unitmeasure | qtyonhand | recrderlvl | seleprice | costprice |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+| P00001    | Tshirt       |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P0345     | shirt        |              6 | piecs       |       150 |         50 |       500 |       350 |
+| P06734    | cotton jeans |              5 | piecs       |       100 |         50 |       350 |       250 |
+| P07865    | jence        |              5 | piecs       |       200 |         50 |       350 |       250 |
+| P08864    | Trosour      |              5 | piecs       |       200 |         50 |       350 |       250 |
++-----------+--------------+----------------+-------------+-----------+------------+-----------+-----------+
+5 rows in set (0.0045 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select min(saleprice) as largeprice product_master;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product_master' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select min(saleprice) as largeprice from product_master;
+ERROR: 1054 (42S22): Unknown column 'saleprice' in 'field list'
+ MySQL  localhost:3306 ssl  student  SQL > select MIN(saleprice) as largeprice from product_master;
+ERROR: 1054 (42S22): Unknown column 'saleprice' in 'field list'
+ MySQL  localhost:3306 ssl  student  SQL > select MIN(seleprice) as largeprice from product_master;
++------------+
+| largeprice |
++------------+
+|        350 |
++------------+
+1 row in set (0.0040 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select MAX(seleprice) as largeprice from product_master;
++------------+
+| largeprice |
++------------+
+|        500 |
++------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select sum(seleprice) as largeprice from product_master;
++------------+
+| largeprice |
++------------+
+|       1900 |
++------------+
+1 row in set (0.0031 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select avg(seleprice) as largeprice from product_master;
++------------+
+| largeprice |
++------------+
+|   380.0000 |
++------------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select address1 as 'city' from client_master;
++----------+
+| city     |
++----------+
+| NULL     |
+| NULL     |
+| surat    |
+| madras   |
+| mumbai   |
+| mumbai   |
+| mumbai   |
+| bangalor |
+| mumbai   |
+| mungalor |
++----------+
+10 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master limit 3;
++----------+------+----------+----------+-------+---------+---------+--------+
+| clientno | name | address1 | address2 | city  | pincode | state   | baldue |
++----------+------+----------+----------+-------+---------+---------+--------+
+| NULL     | NULL | NULL     | NULL     | NULL  |    NULL | NULL    |   NULL |
+| NULL     | NULL | NULL     | NULL     | NULL  |    NULL | NULL    |   NULL |
+| 1        | ami  | surat    | surat    | rdfrg |   23456 | gujarat |   1234 |
++----------+------+----------+----------+-------+---------+---------+--------+
+3 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master limit 3 offset 2;
++----------+--------------+----------+----------+-------+---------+---------+--------+
+| clientno | name         | address1 | address2 | city  | pincode | state   | baldue |
++----------+--------------+----------+----------+-------+---------+---------+--------+
+| 1        | ami          | surat    | surat    | rdfrg |   23456 | gujarat |   1234 |
+| 2        | mit sangani  | madras   | surat    | surat |    1234 | mumbai  |   2345 |
+| C00001   | ivan bayrose | mumbai   | surat    | rdfrg |   23456 | gujarat |   1234 |
++----------+--------------+----------+----------+-------+---------+---------+--------+
+3 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  student  SQL >
+
+
+
+
+
+
+
+
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 21
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| any                |
+| customer           |
+| inforamation       |
+| information_schema |
+| mysql              |
+| new                |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+9 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  SQL > use student;
+Default schema set to `student`.
+Fetching global names, object names from `student` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  student  SQL > show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| client_master     |
+| employee          |
+| product_master    |
+| salesman_master   |
+| skill             |
+| student           |
++-------------------+
+6 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set null = 'alike' where null;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null = 'alike' where null' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set clientno = '00001' where null;
+Query OK, 0 rows affected (0.0027 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| 1        | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set clientno = '00001' where city = 'null';
+Query OK, 0 rows affected (0.0033 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set clientno = 'skill' where address1 = 'surat';
+Query OK, 1 row affected (0.0106 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set address1 = 'madras' where state = 'mumbai';
+Query OK, 0 rows affected (0.0021 sec)
+
+Rows matched: 1  Changed: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | madras   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set address1 = 'manali' where state = 'mumbai';
+Query OK, 1 row affected (0.0067 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | mumbai   | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master  set address1 = 'bangalor' where baldue ='2000';
+Query OK, 1 row affected (0.0096 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | mumbai   | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | mungalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master  set address1 = 'bangalor' where baldue ='0';
+Query OK, 2 rows affected (0.0058 sec)
+
+Rows matched: 3  Changed: 2  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master orderby city;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'city' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by city;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0031 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by state;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by state desc;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by  name;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by  name asc;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master order by  name desc;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select discinct address1 from client_master;
+ERROR: 1054 (42S22): Unknown column 'discinct' in 'field list'
+ MySQL  localhost:3306 ssl  student  SQL > select diseinct address1 from client_master;
+ERROR: 1054 (42S22): Unknown column 'diseinct' in 'field list'
+ MySQL  localhost:3306 ssl  student  SQL > select discinet address1 from client_master;
+ERROR: 1054 (42S22): Unknown column 'discinet' in 'field list'
+ MySQL  localhost:3306 ssl  student  SQL > select distinct address1 from client_master;
++----------+
+| address1 |
++----------+
+| NULL     |
+| surat    |
+| manali   |
+| mumbai   |
+| bangalor |
++----------+
+5 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  student  SQL > select distinct state from client_master;
++-------------+
+| state       |
++-------------+
+| NULL        |
+| gujarat     |
+| mumbai      |
+| tamilnadu   |
+| maharashtra |
++-------------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set name = 'amii' where city = 'null';
+Query OK, 0 rows affected (0.0012 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | chhaya bankar  | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  student  SQL > update client_master set name = 'amii' where baldue = '5000';
+Query OK, 1 row affected (0.0092 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  student  SQL > select *from client_master;
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| clientno | name           | address1 | address2 | city  | pincode | state       | baldue |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| NULL     | NULL           | NULL     | NULL     | NULL  |    NULL | NULL        |   NULL |
+| skill    | ami            | surat    | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| 2        | mit sangani    | manali   | surat    | surat |    1234 | mumbai      |   2345 |
+| C00001   | ivan bayrose   | mumbai   | surat    | rdfrg |   23456 | gujarat     |   1234 |
+| C00002   | mamta muzandar | bangalor | surat    | rdfrg |   23456 | tamilnadu   |      0 |
+| C00003   | amii           | mumbai   | surat    | rdfrg |   23456 | maharashtra |   5000 |
+| C00004   | ashwini josi   | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
+| C00005   | hansel colaco  | bangalor | surat    | rdfrg |   23456 | gujarat     |   2000 |
+| C00006   | deepak sharma  | bangalor | surat    | rdfrg |   23456 | gujarat     |      0 |
++----------+----------------+----------+----------+-------+---------+-------------+--------+
+10 rows in set (0.0011 sec)
+
+
+
+
+
+
+
+MySQL Error 1049: Unknown database 'classicmodels'
+ MySQL  localhost:3306 ssl  SQL > create database classicmodels;
+Query OK, 1 row affected (0.0141 sec)
+ MySQL  localhost:3306 ssl  SQL > use classicmodels;
+Default schema set to `classicmodels`.
+Fetching global names, object names from `classicmodels` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  classicmodels  SQL > source "D:\sqll\mysqlsampledatabase.sql";
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'USE classicmodels' at line 3
+Query OK, 0 rows affected, 1 warning (0.0092 sec)
+Note (code 1051): Unknown table 'classicmodels.customers'
+ERROR: 1824 (HY000): Failed to open the referenced table 'employees'
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''customerNumber','customerName','contactLastName','contactFirstName','phone','ad' at line 1
+Query OK, 0 rows affected (0.0004 sec)
+Query OK, 0 rows affected, 1 warning (0.0038 sec)
+Note (code 1051): Unknown table 'classicmodels.employees'
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FCREATE TABLE employees (
+  employeeNumber int(11) NOT NULL,
+  lastName varchar(' at line 1
+Query OK, 0 rows affected (0.0003 sec)
+ERROR: 1146 (42S02): Table 'classicmodels.employees' doesn't exist
+Query OK, 0 rows affected (0.0005 sec)
+Query OK, 0 rows affected, 1 warning (0.0024 sec)
+Note (code 1051): Unknown table 'classicmodels.offices'
+Query OK, 0 rows affected (0.0522 sec)
+Query OK, 0 rows affected (0.0003 sec)
+Query OK, 7 rows affected (0.0094 sec)
+
+Records: 7  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected, 1 warning (0.0053 sec)
+Note (code 1051): Unknown table 'classicmodels.orderdetails'
+ERROR: 1824 (HY000): Failed to open the referenced table 'orders'
+Query OK, 0 rows affected (0.0005 sec)
+ERROR: 1146 (42S02): Table 'classicmodels.orderdetails' doesn't exist
+Query OK, 0 rows affected (0.0005 sec)
+Query OK, 0 rows affected, 1 warning (0.0040 sec)
+Note (code 1051): Unknown table 'classicmodels.orders'
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT orders_ibfk_1 FOREIGN KEY (customerNumber) REFERENCES customers (cust' at line 11
+Query OK, 0 rows affected (0.0006 sec)
+ERROR: 1146 (42S02): Table 'classicmodels.orders' doesn't exist
+Query OK, 0 rows affected (0.0004 sec)
+Query OK, 0 rows affected, 1 warning (0.0042 sec)
+Note (code 1051): Unknown table 'classicmodels.payments'
+ERROR: 1824 (HY000): Failed to open the referenced table 'customers'
+Query OK, 0 rows affected (0.0002 sec)
+ERROR: 1146 (42S02): Table 'classicmodels.payments' doesn't exist
+Query OK, 0 rows affected (0.0002 sec)
+Query OK, 0 rows affected, 1 warning (0.0025 sec)
+Note (code 1051): Unknown table 'classicmodels.productlines'
+Query OK, 0 rows affected (0.0297 sec)
+Query OK, 0 rows affected (0.0002 sec)
+Query OK, 7 rows affected (0.0054 sec)
+
+Records: 7  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected (0.0004 sec)
+Query OK, 0 rows affected, 1 warning (0.0051 sec)
+Note (code 1051): Unknown table 'classicmodels.products'
+Query OK, 0 rows affected, 1 warning (0.0565 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+Query OK, 0 rows affected (0.0001 sec)
+Query OK, 110 rows affected (0.0187 sec)
+
+Records: 110  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  classicmodels  SQL >
+
+ MySQL  localhost:3306 ssl  any  SQL > show tables;
++---------------+
+| Tables_in_any |
++---------------+
+| no            |
++---------------+
+1 row in set (0.0030 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from any;
+ERROR: 1146 (42S02): Table 'any.any' doesn't exist
+ MySQL  localhost:3306 ssl  any  SQL > select *from no;
++----+------+
+| id | name |
++----+------+
+|  1 | ami  |
+|  2 | kil  |
++----+------+
+2 rows in set (0.0252 sec)
+ MySQL  localhost:3306 ssl  any  SQL > delete from no where id = 1;
+Query OK, 1 row affected (0.0219 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from no;
++----+------+
+| id | name |
++----+------+
+|  2 | kil  |
++----+------+
+1 row in set (0.0011 sec)
+
+
+
+ MySQL  localhost:3306 ssl  SQL > use any;
+Default schema set to `any`.
+Fetching global names, object names from `any` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  any  SQL > show tables;
++---------------+
+| Tables_in_any |
++---------------+
+| no            |
++---------------+
+1 row in set (0.0067 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from no;
++----+------+
+| id | name |
++----+------+
+|  2 | kil  |
++----+------+
+1 row in set (0.0039 sec)
+ MySQL  localhost:3306 ssl  any  SQL > create table ami(id int ,name varchar(10),foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > create table ami(id int primary key ,name varchar(10),foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL >
+
+
+
+ foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE student( id int(10) PRIMARY KEY, studentname varchar(29), email varchar(20));
+Query OK, 0 rows affected, 1 warning (0.0465 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE stud( id int(10) PRIMARY KEY, studname varchar(29), email varchar(20),Foreign key (id) references student (id));
+Query OK, 0 rows affected, 1 warning (0.0429 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > describe stud;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| studname | varchar(29) | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.0042 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from stud;
+Empty set (0.0051 sec)
+ MySQL  localhost:3306 ssl  any  SQL > describe stud;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| studname | varchar(29) | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+
+
+
+
+
+
+
+
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 60
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| any                |
+| classicmodels      |
+| customer           |
+| inforamation       |
+| information_schema |
+| mysql              |
+| new                |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+10 rows in set (0.0023 sec)
+ MySQL  localhost:3306 ssl  SQL > ues any;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ues any' at line 1
+ MySQL  localhost:3306 ssl  SQL > ues new;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ues new' at line 1
+ MySQL  localhost:3306 ssl  SQL > ues student;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ues student' at line 1
+ MySQL  localhost:3306 ssl  SQL > use any;
+Default schema set to `any`.
+Fetching global names, object names from `any` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  any  SQL > show tables;
++---------------+
+| Tables_in_any |
++---------------+
+| no            |
++---------------+
+1 row in set (0.0067 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from no;
++----+------+
+| id | name |
++----+------+
+|  2 | kil  |
++----+------+
+1 row in set (0.0039 sec)
+ MySQL  localhost:3306 ssl  any  SQL > create table ami(id int ,name varchar(10),foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > create table ami(id int primary key ,name varchar(10),foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > create table ami( id int primary key ,name varchar(10),foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > create table ami( id int, name varchar(10), foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > create table ami( id int, name varchar(10), address varchar(23), foreign key (id) references no (id));
+ERROR: 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'ami_ibfk_1' in the referenced table 'no'
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE student( id int(10) PRIMARY KEY, studentname varchar(29), email varchar(20));
+Query OK, 0 rows affected, 1 warning (0.0465 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE stud( id int(10) PRIMARY KEY, studname varchar(29), email varchar(20),Foreign key (id) references student (id));
+Query OK, 0 rows affected, 1 warning (0.0429 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > describe stud;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| studname | varchar(29) | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.0042 sec)
+ MySQL  localhost:3306 ssl  any  SQL > select *from stud;
+Empty set (0.0051 sec)
+ MySQL  localhost:3306 ssl  any  SQL > describe stud;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| studname | varchar(29) | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  any  SQL > create table std
+                                    ->   ( rollno int PRIMARY KEY,
+                                    ->   stdname varchar(29),
+                                    ->   email varchar(20)
+                                    ->   );
+Query OK, 0 rows affected (0.0467 sec)
+ MySQL  localhost:3306 ssl  any  SQL > create table course
+                                    ->   ( courseid int ,
+                                    ->   coursename varchar(29),
+                                    ->  rollno int,
+                                    ->  foreign key (rollno) references std (rollno));
+Query OK, 0 rows affected (0.0986 sec)
+ MySQL  localhost:3306 ssl  any  SQL > desc course;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| courseid   | int         | YES  |     | NULL    |       |
+| coursename | varchar(29) | YES  |     | NULL    |       |
+| rollno     | int         | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.0047 sec)
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE joi( id int(10) PRIMARY KEY, studentname varchar(29), email varchar(20));
+Query OK, 0 rows affected, 1 warning (0.0380 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE stud( studname varchar(29), email varchar(20), id int(10), Foreign key (id) references joi (id) );
+ERROR: 1050 (42S01): Table 'stud' already exists
+ MySQL  localhost:3306 ssl  any  SQL > CREATE TABLE studd( studname varchar(29), email varchar(20), id int(10), Foreign key (id) references joi (id) );
+Query OK, 0 rows affected, 1 warning (0.0954 sec)
+Warning (code 1681): Integer display width is deprecated and will be removed in a future release.
+ MySQL  localhost:3306 ssl  any  SQL > dece studd;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dece studd' at line 1
+ MySQL  localhost:3306 ssl  any  SQL > dese studd;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dese studd' at line 1
+ MySQL  localhost:3306 ssl  any  SQL > desc studd;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| studname | varchar(29) | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  |     | NULL    |       |
+| id       | int         | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.0038 sec)
+
+
+
+
+use student;
+
+select *from employee;
+
+alter table employee add column city varchar(20);
+
+
+alter table employee add column ciyy varchar(20);
+
+insert into employee (id,firstname,email,address,phoneno,city,ciyy) values (6,'eds','dwe@gmail.com','wsd',23456,'surat','fgv');
+desc employee;
+select *from employee;
+
+update employee set city = 'surat' where id = 1;
+update employee set city = 'mumbai' where id = 2;
+update employee set city = 'srilanka' where id = 3;
+update employee set city = 'rachi' where id = 4;
+
+
+
+
+1	ami	ami@mail.com	surat	1234567890	surat	
+2	miyy	amitt@mail.com	suuhj	1235467890	mumbai	
+3	meeti	meeti@mail.com	surat	1238767890	srilanka	
+4	ami	ami@mail.com	surat	1234567890	rachi	
+6	eds	dwe@gmail.com	wsd	23456	surat	fgv
+
+
+
+
+
+create table more(id int,name varchar(10),city varchar(19));
+insert into more values(1,'ami','surat'),(2,'mit','mumbai'),(3,'prince','bombay'),(4,'zeel','norachi');
+
+select *from more;
+
+create table nore(nore_id int, work varchar(10),email varchar(19));
+insert into nore values(1,'front-end','ujhyh@uhju'),(2,'back-end','ujhyh@uhju'),(3,'full-stack','prince@yhjyu'),(4,'flutter','zeel@yhujk');
+
+select *from nore;
+
+select id,name,city,work,email from more full join nore on id = nore_id;
+
+select id,name,email from more rigth join nore on id = nore_id;
+select id,name,work from more cross join nore ;
+select id,name,email,work from more cross join nore;
+
+						

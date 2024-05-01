@@ -1,0 +1,38 @@
+function without arguments and without return value
+function without arguments and with return value
+
+klmno
+PS D:\c\output> git init
+Initialized empty Git repository in D:/c/output/.git/
+PS D:\c\output> git add .
+PS D:\c\output> git branch
+PS D:\c\output> git commit -m "first commit"
+[master (root-commit) 3810e3b] first commit
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 1.exe
+ create mode 100644 2-d1.exe
+ create mode 100644 for46.exe
+PS D:\c\output> git commit -m "c"           
+On branch master
+nothing to commit, working tree clean
+PS D:\c\output> git add .
+PS D:\c\output> git commit -m "c"
+On branch master
+nothing to commit, working tree clean
+PS D:\c\output> git remote add origin https://github.com/613amisangani/c.git
+PS D:\c\output> git push -u origin master
+info: please complete authentication in your browser...
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 33.96 KiB | 620.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/613amisangani/c.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+PS D:\c\output> 
+ *  History restored 
+
+PS D:\c> 
